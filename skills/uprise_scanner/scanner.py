@@ -273,13 +273,20 @@ class StockAnalyzer:
         return is_breakout
 
 def main():
-    print("=== Uprise Scanner: True Soaring Stocks & Pullback Alert ===")
+    print("=== Uprise 스캐너: 진정한 급등주 & 눌림목 포착 ===")
     client = NaverFinanceClient()
     analyzer = StockAnalyzer(client)
     
     # 1. Get Candidates
     rising_stocks = client.get_rising_stocks(limit=50)
-    print(f"Found {len(rising_stocks)} initial rising candidates...")
+    print(f"상승 종목 {len(rising_stocks)}개 탐색 중...")
+    
+    # Show Top 5 Rising Stocks regardless of criteria
+    if rising_stocks:
+        print("\n[실시간 상승 상위 5 종목 (필터 적용 전)]")
+        for s in rising_stocks[:5]:
+             print(f"- [{s['code']}] {s['name']} : {s['price']}원 ({s['diff_rate']}%) | 거래량: {s['volume']}")
+        print("-" * 50)
     
     final_candidates = []
     
@@ -292,6 +299,8 @@ def main():
         if not history: continue
         
         # Volume Spike
+        # If volume is 0 (pre-market), we might skip this check or fail it.
+        # Strict mode: fail.
         if not analyzer.check_volume_spike(stock, history): continue
         
         # Safe Zone (Psychological Low)
@@ -311,19 +320,19 @@ def main():
         
         final_candidates.append(stock)
         
-    print(f"\nScan Complete. Found {len(final_candidates)} 'True Soaring Stocks'.\n")
+    print(f"\n스캔 완료. '진정한 급등주' {len(final_candidates)}개 발견.\n")
     
     for c in final_candidates:
-        print(f"[{c['code']}] {c['name']} | Price: {c['price']} (+{c['diff_rate']}%)")
-        print(f"   Vol: {c['volume']} (Spike Detected!)")
+        print(f"[{c['code']}] {c['name']} | 현재가: {c['price']} (+{c['diff_rate']}%)")
+        print(f"   거래량: {c['volume']} (거래량 폭증!)")
         
         fund = c.get('fundamentals', {})
-        print(f"   Financials: OpInc {fund.get('operating_income','?')} | PER {fund.get('PER','?')} | PBR {fund.get('PBR','?')}")
+        print(f"   재무상태: 영업이익 {fund.get('operating_income','?')} | PER {fund.get('PER','?')} | PBR {fund.get('PBR','?')}")
         
         if c['signal']:
-            print("   >>> 🔔 [SMARTPHONE ALERT] Pullback/Breakout Buy Signal Detected! 🔔 <<<")
+            print("   >>> 🔔 [스마트폰 알림] 눌림목/돌파 매수 신호 발생! 🔔 <<<")
         else:
-            print("   (Monitoring for pullback signal...)")
+            print("   (눌림목 관찰 중...)")
         print("-" * 40)
 
 if __name__ == "__main__":
