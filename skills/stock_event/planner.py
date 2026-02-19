@@ -77,7 +77,7 @@ class ThemePlanner:
     def check_psychological_low(self, code):
         """
         Check if current price is in the lower 30% of 3-year range (Weekly Candle).
-        Reuse/Simplified logic from uprise_scanner.
+        Reuse/Simplified logic from stock_uprise.
         Scrape weekly chart data from sise_day (formatted as weekly) or just daily 1000 days.
         Let's use daily for last ~700 days (approx 3 years trading days).
         """

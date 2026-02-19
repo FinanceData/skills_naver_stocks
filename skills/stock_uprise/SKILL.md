@@ -1,5 +1,5 @@
 ---
-name: uprise_scanner
+name: stock_uprise
 description: A scanner to identify "True Soaring Stocks" and "Pullback" opportunities with fundamental analysis.
 ---
 
@@ -29,5 +29,5 @@ This skill implements a stock scanner that filters for high-quality soaring stoc
 Run the scanner directly:
 
 ```bash
-python3 skills/uprise_scanner/scanner.py
+python3 skills/stock_uprise/scanner.py
 ```

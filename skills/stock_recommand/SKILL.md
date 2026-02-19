@@ -1,5 +1,5 @@
 ---
-name: recommand
+name: stock_recommand
 description: A fact checker tool for brokerage recommendations, ranking brokers, and tracking excluded stocks.
 ---
 
@@ -27,10 +27,10 @@ It checks for vague/risky keywords and ranks brokerages based on their recommend
 Run the checker:
 
 ```bash
-python3 skills/recommand/checker.py
+python3 skills/stock_recommand/checker.py
 ```
 
 Or check specific brokerage performance (if implemented):
 ```bash
-python3 skills/recommand/checker.py --broker "KB증권"
+python3 skills/stock_recommand/checker.py --broker "KB증권"
 ```

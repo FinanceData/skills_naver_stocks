@@ -1,5 +1,5 @@
 ---
-name: fundamental_analysis
+name: stock_fundamental
 description: A dashboard that visualizes stock fundamentals as a "Traffic Light" system (Stability, Earnings, Valuation).
 ---
 
@@ -30,10 +30,10 @@ This skill provides a clear, "Traffic Light" style assessment of a company's fin
 Run the analysis for a specific stock code:
 
 ```bash
-python3 skills/fundamental_analysis/analysis.py --code 005930
+python3 skills/stock_fundamental/analysis.py --code 005930
 ```
 
 Or run interactively:
 ```bash
-python3 skills/fundamental_analysis/analysis.py
+python3 skills/stock_fundamental/analysis.py
 ```

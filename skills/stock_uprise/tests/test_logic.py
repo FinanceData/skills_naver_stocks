@@ -13,7 +13,7 @@ from scanner import StockAnalyzer
 class MockClient:
     pass
 
-class TestUpriseScanner(unittest.TestCase):
+class TestStockUprise(unittest.TestCase):
     def setUp(self):
         self.client = MockClient()
         self.analyzer = StockAnalyzer(self.client)

@@ -154,7 +154,7 @@ class RecommendationChecker:
         No, let's just use current price vs a simulated 'Report Date Price' 
         (Current Price / (1 + Return)) to show the *Calculation Logic*.
         
-        Actually, we can use the `get_history` from `uprise_scanner` logic!
+        Actually, we can use the `get_history` from `stock_uprise` logic!
         But calling it for 50+ stocks is slow.
         
         Let's pick top 3 brokers by volume of reports and only analyze them for real.
